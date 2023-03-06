@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Mission_9_Gandola.Controllers
 {
+    //main home controller
     public class HomeController : Controller
     {
         private IBookstoreRepository repo;
@@ -19,6 +20,7 @@ namespace Mission_9_Gandola.Controllers
         //private BookstoreContext context { get; set; }
         //public HomeController(BookstoreContext temp) => context = temp;
         
+        //method that allows page variability and pagination
         public IActionResult Index(int pageNum = 1)
         {
             int numResults = 10;

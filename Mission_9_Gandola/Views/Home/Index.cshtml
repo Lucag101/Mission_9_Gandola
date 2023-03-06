@@ -8,6 +8,7 @@
 @model BooksViewModel
 
 <h1>Book Store</h1>
+<!--display each book and display information-->
 
 @foreach (Books b in Model.Books)
 {
@@ -28,6 +29,7 @@
     
 }
 
+<!--display page counts, and include pagination-->
 <div page-count="@Model.PageInfo" page-action="Index" page-classes-enabled="true"
           page-class="btn" page-class-normal="btn-outline-dark"
           page-class-selected="btn-primary" class="btn-group pull-right m-1">
