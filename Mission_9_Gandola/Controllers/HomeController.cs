@@ -21,20 +21,24 @@ namespace Mission_9_Gandola.Controllers
         //public HomeController(BookstoreContext temp) => context = temp;
         
         //method that allows page variability and pagination
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index( string category, int pageNum = 1)
         {
             int numResults = 10;
 
             var x = new BooksViewModel
             {
                 Books = repo.Books
+                    .Where(p => p.Category == category || category == null)
                     .OrderBy(p => p.Title)
                     .Skip(numResults * (pageNum - 1))
                     .Take(numResults),
 
                 PageInfo = new PageInfo
                 {
-                    TotalBooks = repo.Books.Count(),
+                    // TotalBooks should only count all books, if cateogyr is null. Check.
+                    TotalBooks =  (category == null 
+                        ? repo.Books.Count() 
+                        : repo.Books.Where(x => x.Category == category).Count()),
                     BooksPerPage = numResults,
                     CurrentPage = pageNum
                 }
