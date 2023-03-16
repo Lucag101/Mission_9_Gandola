@@ -25,6 +25,14 @@
             <td>@i.Quantity</td>
             <td>@i.Book.Price </td>
             <td>@(i.Quantity * i.Book.Price)</td>
+            @* Delete button *@
+            <td class="text-center">
+                <form method="post" asp-page-handler="remove">
+                    <input type="hidden" name="bookId" value="@i.Book.BookId" />
+                    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl " />
+                    <button type="submit" class="btn btn-sm btn-danger"> Delete </button>
+                </form>
+            </td>
         </tr>
             }
     </tbody>
@@ -40,4 +48,6 @@
 
 <div>
     <a class="btn btn-primary" href="@Model.ReturnUrl"> Keep Shopping</a>
+
+    <a class="btn btn-primary" asp-controller="Purchase" asp-action="Checkout"> Checkout</a>
 </div>

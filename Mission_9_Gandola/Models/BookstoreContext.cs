@@ -15,7 +15,7 @@ namespace Mission_9_Gandola.Models
             : base(options)
         {
         }
-
-        public virtual DbSet<Books> Books { get; set; }
+        public DbSet<Books> Books { get; set; }
+        public DbSet<Purchase> Purchase { get; set; }
     }
 }

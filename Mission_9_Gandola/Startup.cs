@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Mission_9_Gandola.Models;
+using Mission_9_Gandola.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,10 +35,14 @@ namespace Mission_9_Gandola
            });
 
             services.AddScoped<IBookstoreRepository, EFBookstoreRepository>();
+            services.AddScoped<IPurchaseRepository, EFPurchaseRepository>();
 
             services.AddRazorPages();
             services.AddDistributedMemoryCache();
             services.AddSession();
+
+            services.AddScoped<Cart>(x => SessionCart.GetCart(x));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
